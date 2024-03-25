@@ -1,7 +1,9 @@
 shader_type spatial;
 
+uniform float hill_frequency = 4.0;
+
 void vertex() {
-	VERTEX.y += cos(VERTEX.x) * sin(VERTEX.z);
+	VERTEX.y += cos(VERTEX.z * hill_frequency) * sin(VERTEX.x * hill_frequency);
 }
 
 void fragment() {

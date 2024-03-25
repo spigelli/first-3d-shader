@@ -5,6 +5,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8dvvq"]
 render_priority = 0
 shader = ExtResource("1_maq0x")
+shader_parameter/hill_frequency = 4.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_f8njs"]
 material = SubResource("ShaderMaterial_8dvvq")
