@@ -1,9 +1,18 @@
 shader_type spatial;
 
-uniform float hill_frequency = 4.0;
+uniform sampler2D noise;
+uniform float height_scale = 0.5;
+
+float mesh_to_texture_coords(float mesh_coord) {
+  return (mesh_coord / 2.0) + 0.5;
+}
 
 void vertex() {
-	VERTEX.y += cos(VERTEX.z * hill_frequency) * sin(VERTEX.x * hill_frequency);
+	float height = texture(
+    noise,
+    VERTEX.xz / 2.0 * 0.5
+  ).x;
+  VERTEX.y += height * height_scale;
 }
 
 void fragment() {
