@@ -4,20 +4,17 @@ uniform sampler2D noise;
 uniform sampler2D normal_map;
 uniform float height_scale = 0.5;
 
-float mesh_to_texture_coords(float mesh_coord) {
-  return (mesh_coord / 2.0) + 0.5;
-}
+varying vec2 tex_position;
 
 void vertex() {
-	float height = texture(
-    noise,
-    VERTEX.xz / 2.0 * 0.5
-  ).x;
+  tex_position = VERTEX.xz / 2.0 * 0.5;
+	float height = texture(noise, tex_position).x;
   VERTEX.y += height * height_scale;
 }
 
 void fragment() {
 	// Called for every pixel the material is visible on.
+  NORMAL_MAP = texture(normal_map, tex_position).xyz;
 }
 
 //void light() {
