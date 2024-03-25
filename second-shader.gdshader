@@ -1,6 +1,7 @@
 shader_type spatial;
 
 uniform sampler2D noise;
+uniform sampler2D normal_map;
 uniform float height_scale = 0.5;
 
 float mesh_to_texture_coords(float mesh_coord) {
